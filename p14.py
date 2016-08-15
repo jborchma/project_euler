@@ -8,7 +8,7 @@ def memoize(f):
     def wrapper(*args):
         if not args in cache:
             cache[args] = f(*args)
-        print(cache)
+        #print(cache)
         return cache[args]
     return wrapper
 
@@ -24,8 +24,8 @@ def collatz_chain(n):
 target = 1000000
 
 
-print('Length of chain is %s' % collatz_chain(10))
+#print('Length of chain is %s' % collatz_chain(target))
 
-#print(max(range(1, target+1), key=collatz_chain))
+print(max(range(1, target+1), key=collatz_chain))
 
 print('The calculation took %s s.' % (time.time()-start))

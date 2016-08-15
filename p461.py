@@ -1,35 +1,96 @@
 # use a genetic algorithm
 from random import randint, random
 import math
+import time
+from numpy import *
+import bisect
 
-G_s = 32
-G_sub = 16
-p_mut = 0.16
+start = time.time()
+
+n = 10000
+n_max = int(ceil(n *log(pi + 1)))
+f_values = [exp(i/n) - 1 for i in range(0,n_max+1)]
+
 
 def f(n,k):
-    return math.exp(k/n) - 1
+    return exp(k/n) - 1
 
-def populate():
+def binary_search(a,b,c):
+    n = 10000
+    low = 1
+    high = 14400
+    rest = f(n,a) + f(n,b) + f(n,c) - pi
+    if rest > 0:
+        return 0
+    else:
+        while high - low > 1:
+            mid = int((high + low)/2)
+            diff = f(n,mid) + rest 
+            if diff > 0:
+                high = mid
+            else:
+                low = mid
 
-    return [sorted([randint(1,14500) for j in range(4)]) for i in range(G_s)]
+        if abs(f(n,low)+rest) < abs(f(n,high)+rest):
+            return low
+        else:
+            return high
 
-def fitness(member):
-    return abs(sum([f(10000,numb) for numb in member])- math.pi)
+def sorted_values(n_max):
 
-def new_gen(gen):
-    return [sorted([random() < p_mut and randint(1,14500) or member[k] for k in range(len(member))])for member in gen]
 
-def g(member):
-    return sum([numb**2 for numb in member])
+    added_values = zeros(int((n_max+2)*(n_max+1)/2))
 
-best_score = 100
-pop = populate()
-while True:
-    selected = sorted(pop,key=fitness)[:G_sub]
-    gen_score = fitness(selected[0])
-    if gen_score < best_score:
-        best_score = gen_score
-        print(best_score,selected[:3])
-        print(g(selected[0]))
-    pop = new_gen(selected)
+    index = 0
+    for i in range(n_max+1):
+        for j in range(i,n_max+1):
+            added_values[index] = f_values[i] + f_values[j]
+            index += 1
+
+    sorted_values = sort(added_values)
+
+    return sorted_values
+
+def binary_array_search(sorted_values):
+
+    low = 0
+    high = shape(sorted_values)[0]-1
+    global_best = 1000
+    partial_best_values = [] 
+
+    while low <= high:
+        temp_best = 1000
+        diff = abs(sorted_values[low] + sorted_values[high] - pi)
+        while diff < temp_best:
+            temp_best = diff
+            low += 1
+            diff = abs(sorted_values[low] + sorted_values[high] - pi)
+        if temp_best < global_best:
+            global_best = temp_best
+            partial_best_values = [sorted_values[low-1], sorted_values[high]]
+        high -= 1
+        low -= 1
+
+    k = []
+    # find the four values for the best approximation of pi
+    for i in range(0, n_max+1):
+        for j in range(i, n_max+1):
+            T = f_values[i] + f_values[j]
+            if T == partial_best_values[0] or T == partial_best_values[1]:
+                k.extend([i, j])
+
+    print(k, global_best)
+    print('g = ', sum([i**2 for i in k]))
+
+
+
+sorted_values = sorted_values(n_max)
+max_ind = bisect.bisect_left(sorted_values, pi) #gives me the first index that has a larger value than pi
+sorted_values = sorted_values[:max_ind]
+binary_array_search(sorted_values)
+
+
+print(time.time() - start)
+
+
 

@@ -8,7 +8,7 @@ largest = 0
 for first in range(100,999):
     for second in range(100,999):
         product = first* second
-        if check_palindrome(product):
-            largest == product
+        if check_palindrome(product) and product > largest:
+            largest = product
 
-print(product)
+print(largest)
