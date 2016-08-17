@@ -5,8 +5,9 @@ from numpy.linalg import solve
 
 def create_probability_table(max_dist):
     probab_table = zeros([max_dist+1,max_dist+1])
-    probab_table[0,0]=0
+    probab_table[0,0]=0 # as the game is over, there are no probabilities, found this via trial and error....
 
+    # special case with distance 1
     probab_table[1,0] = 2/9
     probab_table[1,1] = 19/36
     probab_table[1,2] = 2/9
@@ -19,6 +20,7 @@ def create_probability_table(max_dist):
         probab_table[d,d+1] = 2/9
         probab_table[d,d] = 1/2
 
+    # special cases with periodic boundary
     probab_table[max_dist-1,max_dist-1] = 1/2+1/36
     probab_table[max_dist-1,max_dist] = 2/9
     probab_table[max_dist-1,max_dist-2] = 2/9
