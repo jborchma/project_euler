@@ -1,5 +1,6 @@
 from numpy import *
 
+#solve exactly like problem 286 with Markov chains
 # define the transition matrix
 def transition_matrix(i):
     transition = zeros([16,16])
