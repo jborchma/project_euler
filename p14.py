@@ -12,6 +12,7 @@ def memoize(f):
         return cache[args]
     return wrapper
 
+# define the function
 @memoize
 def collatz_chain(n):
     if n == 1:
@@ -24,8 +25,7 @@ def collatz_chain(n):
 target = 1000000
 
 
-#print('Length of chain is %s' % collatz_chain(target))
-
+# print the maximum
 print(max(range(1, target+1), key=collatz_chain))
 
 print('The calculation took %s s.' % (time.time()-start))

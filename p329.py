@@ -51,36 +51,6 @@ for i in range(1,N_max-1):
         P[i,i-1] = Fraction(1,2) * Fraction(1,3)*6
         N[i,i-1] = Fraction(1,2) * Fraction(2,3)*6
 
-# P[0,1] = 1
-# N[0,1] = 1
-
-# P[N_max-1,N_max-2] = 1
-# N[N_max-1,N_max-2] = 1
-
-# for i in range(1,N_max-1):
-#     if prime_list[i+2]:
-#         P[i,i+1] = 1
-#         N[i,i+1] = 1
-#     elif not prime_list[i+2]:  
-#         P[i,i+1] = 1
-#         N[i,i+1] = 1
-#     if prime_list[i]:
-#         P[i,i-1] = 1
-#         N[i,i-1] = 1
-#     elif not prime_list[i]:  
-#         P[i,i-1] = 1
-#         N[i,i-1] = 1
-
-
-summe = 0
-
-# p_first_P = 0
-# for i in range(1,501):
-#     if prime_list[i]:
-#         p_first_P += 1
-
-# p_first_P = Fraction(2,3)*Fraction(p_first_P,500) + Fraction(1,3)*Fraction(500-p_first_P,500)
-# print(p_first_P)
 
 alpha = ones([1,N_max])
 for i in range(0,500):

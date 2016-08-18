@@ -1,3 +1,5 @@
+# defined my own factorial function
+
 def factorial(n):
     if n==1:
         return 1

@@ -1,3 +1,4 @@
+# again, find the sum of the divisors of a number
 def find_divisor_sum(n):
     div_list = []
     for i in range(1,n//2+1):
