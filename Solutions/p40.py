@@ -1,9 +1,7 @@
-from numpy import log10
+# brute force, construct the number, pick the right elements
 
-def d(n):
-    if n < 10:
-        return n
-    power = int(log10(n))
-    
+number_string = ''
+for i in range(1,200000):
+    number_string += str(i)
 
-print(int(log10(8)))
+print(int(number_string[9])*int(number_string[99])*int(number_string[999])*int(number_string[9999])*int(number_string[99999])*int(number_string[999999]))
