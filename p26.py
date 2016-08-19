@@ -17,18 +17,23 @@ def primes(n):
 
     return primes
 
-
-
 def period_length(d):
-    number = str( Decimal(1)/Decimal(d))
-    for length in range(1,1000):
-        period_found = False
-        for digit in range(len(number)-2*length):
-            if number[digit:digit+length] == number[digit+length:digit+2*length] and number[digit:digit+length] == number[digit+2*length:digit+3*length]:
-                period_found=True
-                return length
-        if period_found:
-            break
-
+    i = 1
+    if d % 2 == 0: 
+        return period_length(d / 2)
+    if d % 5 == 0: 
+        return period_length(d / 5)
+    while True:
+        if (pow(10, i) - 1) % d == 0: 
+            return i
+        else: 
+            i = i + 1
+maximum = 0
+d_max = 0
 for prime in primes(1000):
-    print(prime,period_length(prime))
+    length = period_length(prime)
+    if length > maximum:
+        d_max = prime
+        maximum = length
+
+print(d_max)
