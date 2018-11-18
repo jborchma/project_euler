@@ -36,7 +36,7 @@ GUESSES = {"5616185650518293" : 2,
 
 G = 32 #the size of each generation
 G_S = 16 #the size of the subset of each generation that get selected
-M = 0.06 #probability of mutation
+M = 0.08 #probability of mutation, 0.06 seems to work well
 S = len(GUESSES.keys().__iter__().__next__()) #string size
 
 #creates a population of size population size

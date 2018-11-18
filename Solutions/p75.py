@@ -20,20 +20,26 @@ LIMIT = 1500000
 M_LIMIT = int(math.sqrt(LIMIT/2))
 NUMBER_LIST = [0] * (LIMIT + 1)
 
-number_of_1_sequence = 0
-for m in range(2, M_LIMIT):
-    for n in range(1, m):
-        if (m + n) % 2 == 1 and gcd(m, n) == 1:
-            a = m**2 - n**2
-            b = 2 * m * n
-            c = m**2 + n**2
-            number = a + b + c
-            while number <= LIMIT:
-                NUMBER_LIST[number] += 1
-                if NUMBER_LIST[number] == 1:
-                    number_of_1_sequence += 1
-                if NUMBER_LIST[number] == 2:
-                    number_of_1_sequence -= 1
-                number += a + b + c
+def main():
+    """Main function
+    """
+    number_of_1_sequence = 0
+    for m in range(2, M_LIMIT):
+        for n in range(1, m):
+            if (m + n) % 2 == 1 and gcd(m, n) == 1:
+                a = m**2 - n**2
+                b = 2 * m * n
+                c = m**2 + n**2
+                number = a + b + c
+                while number <= LIMIT:
+                    NUMBER_LIST[number] += 1
+                    if NUMBER_LIST[number] == 1:
+                        number_of_1_sequence += 1
+                    if NUMBER_LIST[number] == 2:
+                        number_of_1_sequence -= 1
+                    number += a + b + c
 
-print(number_of_1_sequence)
+    print(number_of_1_sequence)
+
+if __name__ == "__main__":
+    main()
