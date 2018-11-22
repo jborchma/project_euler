@@ -9,11 +9,10 @@ a = k * (m**2 - n**2)
 b = k * (2*m*n)
 c = k * (m**2 + n**2)
 
-where m > n and m and n are coprime and not both odd (m+n must be odd).
+where m > n and m and n are coprime (gcd(m, n) = 1) and not both odd (m+n must be odd).
 
 number = a + b + c
 """
-from fractions import gcd
 import math
 
 LIMIT = 1500000
@@ -26,7 +25,7 @@ def main():
     number_of_1_sequence = 0
     for m in range(2, M_LIMIT):
         for n in range(1, m):
-            if (m + n) % 2 == 1 and gcd(m, n) == 1:
+            if (m + n) % 2 == 1 and math.gcd(m, n) == 1:
                 a = m**2 - n**2
                 b = 2 * m * n
                 c = m**2 + n**2

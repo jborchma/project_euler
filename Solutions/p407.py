@@ -14,7 +14,8 @@ M(10) = 6
 
 Theorem 1: for prime numbers n: M(n) = 1 (easy proof)
 Theorem 2: if M(n) = x and x > 1: gcd(n, x) > 1
-Theorem 1 follows from 2, since for any prime gcd(n, m) = 1 for all m
+Theorem 1 follows from 2, since for any prime n gcd(n, m) = 1 for all m
+The proof for theorem 2 is in my notebook.
 """
 from collections import defaultdict
 from functools import reduce
