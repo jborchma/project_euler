@@ -29,15 +29,18 @@ def main():
     target = 2000000
     best_value = 0
     best_size = 0
+    best_tuple = None
     for i in range(2, 100):
         for j in range(2, 100):
             value = square_sum(i, j)
             if abs(target - value) < abs(best_value - target):
                 best_value = value
                 best_size = i * j
+                best_tuple = (i,j)
 
     print(best_value)
     print(best_size)
+    print(best_tuple)
 
 
 

@@ -11,6 +11,21 @@ The second reasons is that for anybody except me it must be even harder to follo
 I am starting by adding small write ups for some of my favourite problems to this README as a
 first attempt to be more clear about my solutions.
 
+### Problem 85
+
+This problem can actually be solved most of the way by just writing out all the possible rectangles
+that can be formed for a given size. Writing for each size the number of possibilities, one
+can see that the overall number of squares is
+
+sum_{i=0}^{m-1}sum_{j=0}^{n-1}(m-i)(n-j)
+
+Executing the sums, we get
+
+(n * (n+1) * m * (m+1)) / 4
+
+Once we know the possible number of squares, we can just loop through the possible side lengths
+and keep the best option.
+
 ### Problem 91
 
 [This problem](https://projecteuler.net/problem=91) is very similar in context to problem  85. However, since we are now asked to find all possible triangles with a right angle that include the point (0,0) and not rectangles, this is
@@ -20,13 +35,14 @@ This means we can use Pythagoras' theorem to set up equations for the triangles.
 are three possibilities: the hypothenuse could be either of the sides 0->1, 1->2 or 2->0. From
 this, we get:
 
-1. $x_1 * x_2 + y_1 * y_2 == 0$
-2. $x_1 * (x_1 - x_2) + y_1 * (y_1 - y_2) == 0$
-3. $x_2 * (x_2 - x_1) + y_2 * (y_2 - y_1) == 0$
+1. x_1 * x_2 + y_1 * y_2 = 0
+2. x_1 * (x_1 - x_2) + y_1 * (y_1 - y_2) = 0
+3. x_2 * (x_2 - x_1) + y_2 * (y_2 - y_1) = 0
 
 Since the problem only asks for N=50, we can now just loop through all possible combinations
 to get all possible solutions. For higher numbers, one could further solve these equations
-and manually count all possible solutions.
+and manually count all possible solutions. One important thing to keep in mind is that we only
+count distinct triangles.
 
 ### Problem 185
 
