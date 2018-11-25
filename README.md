@@ -11,6 +11,23 @@ The second reasons is that for anybody except me it must be even harder to follo
 I am starting by adding small write ups for some of my favourite problems to this README as a
 first attempt to be more clear about my solutions.
 
+### Problem 91
+
+[This problem](https://projecteuler.net/problem=91) is very similar in context to problem  85. However, since we are now asked to find all possible triangles with a right angle that include the point (0,0) and not rectangles, this is
+slightly more complex.
+
+This means we can use Pythagoras' theorem to set up equations for the triangles. In total, there
+are three possibilities: the hypothenuse could be either of the sides 0->1, 1->2 or 2->0. From
+this, we get:
+
+1. $x_1 * x_2 + y_1 * y_2 == 0$
+2. $x_1 * (x_1 - x_2) + y_1 * (y_1 - y_2) == 0$
+3. $x_2 * (x_2 - x_1) + y_2 * (y_2 - y_1) == 0$
+
+Since the problem only asks for N=50, we can now just loop through all possible combinations
+to get all possible solutions. For higher numbers, one could further solve these equations
+and manually count all possible solutions.
+
 ### Problem 185
 
 Coming soon
