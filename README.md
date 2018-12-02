@@ -13,7 +13,7 @@ first attempt to be more clear about my solutions.
 
 ### Problem 85
 
-This problem can actually be solved most of the way by just writing out all the possible rectangles
+[This problem](https://projecteuler.net/problem=85) can actually be solved most of the way by just writing out all the possible rectangles
 that can be formed for a given size. Writing for each size the number of possibilities, one
 can see that the overall number of squares is
 
@@ -28,8 +28,7 @@ and keep the best option.
 
 ### Problem 91
 
-[This problem](https://projecteuler.net/problem=91) is very similar in context to problem  85. However, since we are now asked to find all possible triangles with a right angle that include the point (0,0) and not rectangles, this is
-slightly more complex.
+[This problem](https://projecteuler.net/problem=91) is very similar in context to problem  85. However, since we are now asked to find all possible triangles with a right angle that include the point (0,0) and not rectangles, this is slightly more complex.
 
 This means we can use Pythagoras' theorem to set up equations for the triangles. In total, there
 are three possibilities: the hypothenuse could be either of the sides 0->1, 1->2 or 2->0. From
@@ -43,6 +42,25 @@ Since the problem only asks for N=50, we can now just loop through all possible 
 to get all possible solutions. For higher numbers, one could further solve these equations
 and manually count all possible solutions. One important thing to keep in mind is that we only
 count distinct triangles.
+
+### Problem 96
+
+[The problem](https://projecteuler.net/problem=96) asks to create a solver for a Sudoku grid.
+In total, there are 50 grids with varying difficulty that need to be solved.
+
+My solution uses a mixture out of applying the simple column/row/cell based Sudoku rules as well
+as guessing based on the updated grid. It works as follows:
+
+1. Each grid is filled with either the correct integer or the set of possible integers for each
+   position.
+2. Once the grid is initialized, we apply the row/column/cell based rules to rule out any
+   impossible numbers. In case only one number is left in the set, that number is assigned to that
+   position in the grid.
+3. Once we can't advance anymore with these simple rules, we start guessing a digit for each
+   position based on the possible digits and then apply the rules again. Either this leads to the
+   correct solution, or we move on to another guess.
+
+This solution was able to get all 50 solutions pretty quickly.
 
 ### Problem 185
 

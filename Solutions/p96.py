@@ -1,7 +1,9 @@
 """Solution to problem 96
+
+My solutions is pretty straight forward. Mainly, it applies rules for each row, column and cell
+for a given grid and stores
 """
 
-import numpy as np
 from copy import deepcopy
 
 N = 9
@@ -97,7 +99,9 @@ def propagate_knowledge(current_state):
     return current_state, True, new_values_found
 
 def propagate(grid):
-    """ Propagate until we reach a fixpoint """
+    """Propagate our knowledge until we can't find any more numbers by just
+    applying the rules.
+    """
     while True:
         current_state, solvable, new_values_found = propagate_knowledge(grid)
         if not solvable:
@@ -107,6 +111,10 @@ def propagate(grid):
 
 def guess(current_state):
     """Solve the sudoku puzzle
+
+    First, we apply the rules and eliminate as many possiblities as possible. Once we have
+    exhausted all the rule applications, we start guessing for each undetermined cell out of
+    all the possiblities. Once we have arrived at the correct solution, we are done.
     """
     current_state, solvable = propagate(current_state)
 
@@ -128,7 +136,6 @@ def guess(current_state):
                 return None
 
 
-
 def extract_digit(grid):
     """Solves a sudou puzzle and extracts the top three digits
     """
@@ -144,6 +151,8 @@ def extract_digit(grid):
 
 def done(grid):
     """Check if grid is solved.
+
+    In case all digits are determined, test if the grid is consistent.
     """
     for row in grid:
         for cell in row:
