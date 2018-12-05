@@ -63,7 +63,7 @@ def find_square_pairs(pair):
 
         if is_square(number_1) and is_square(number_2):
             if (max(number_1, number_2) > max(largest_pair)
-                and len(str(number_1))==len(str(number_2))):
+                and len(str(number_1)) == len(str(number_2))):
                 largest_pair = (number_1, number_2)
 
     return largest_pair
