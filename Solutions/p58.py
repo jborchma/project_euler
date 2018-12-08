@@ -10,7 +10,10 @@ Very inefficient solution:
 from math import sqrt
 
 def is_prime(num):
-    """Test if number is prime
+    """Test if number is prime.
+
+    This function works well if I need to work with very large numbers where I can't just
+    create a sieve like in problem 10.
     """
     if num == 2:
         return True
