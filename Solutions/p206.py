@@ -1,6 +1,6 @@
 """Problem
 
-check squares of 1010101010 and 1389026623 and only even numbers
+check squares of 1010101010 and 1389026623 and only multiples of 10
 """
 import math
 from numba import jit
