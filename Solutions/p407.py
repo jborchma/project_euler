@@ -25,7 +25,7 @@ from numba import jit
 
 @jit
 def factorize(n: int):
-    """This function factorizes all integers >= n and computes the totient.
+    """This function factorizes all integers <= n and computes the totient.
 
     It then returns the factors and a list of each number's value of Euler's totient
     function (see project euler problem 69).
@@ -44,12 +44,12 @@ def factorize(n: int):
                 totient[i] = totient[i] * (number - 1) // number
     return factors, totient
 
-def uw(f: dict, t:list , i: int):
+def uw(f: dict, t: list, i: int):
     """Helper function
     """
     for j in range(1, len(f[i])):
-        for c in combinations(f[i], j):
-            u = reduce(mul, c)
+        for combination in combinations(f[i], j):
+            u = reduce(mul, combination)
             v = i // u
             w = pow(u, t[v] - 1, v)
             yield u * w
@@ -59,15 +59,15 @@ def main():
     """main function
     """
     n = 10**7
-    f, t = factorize(n + 1)
+    factors, totients = factorize(n + 1)
     summe = 0
     for i in range(2, n + 1):
         # in case i is prime
-        if i not in f or len(f[i]) < 2:
+        if i not in factors or len(factors[i]) < 2:
             summe += 1
             continue
 
-        summe += max(uw(f, t, i))
+        summe += max(uw(factors, totients, i))
 
     print(summe)
 
