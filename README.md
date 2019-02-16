@@ -62,6 +62,37 @@ as guessing based on the updated grid. It works as follows:
 
 This solution was able to get all 50 solutions pretty quickly.
 
+### Problem 114
+
+[This problem](https://projecteuler.net/problem=114) asks to calculate the number of combinations
+of a number of red and black tiles with the condition that the red tiles cannot touch each other and
+have a minimum length of 3.
+
+To start I calculated the number of combinations that are possible for a given number r of red tiles
+and b of black tiles. This can be found out by imagining a row of black tiles with gaps in between
+them and just counting how many ways there are to place the red tiles:
+
+```
+obobobobo
+```
+Here `b` are black tiles and `o` are the possible spots to place the red tiles. This automatically
+takes care of the rule that the red tiles cannot touch.
+
+Once I had that, I had to figure out, for a given length m, how many different combinations of
+r (the number of red block) with different possible lengths there are. The fact that the red
+blocks could have different lengths, made this a little harder.
+
+I figured this out by finding the number of compositions given a specific number of red tiles r
+as well as the overall length of red tiles combined (which then leaves the number of single squared
+black tiles). This can be found [here](https://en.wikipedia.org/wiki/Composition_(combinatorics)#Number_of_compositions). This can be calculated by using the numpy
+polynomial functionality and multiplying a correctly constructed polynomial in order to
+read off the prefactor of the needed term. This is done in the `calculate_polynomial_coefficient`
+function.
+
+Now all I need to do is loop through the numbers of red tiles r starting at 1 and sum up all the
+possible combinations.
+
+
 ### Problem 185
 
 Coming soon
