@@ -111,6 +111,16 @@ possible number of special tiles for the red, green and blue lengths. The number
 is given by `(r+b)!/(r! * b!) = binom(m + (1 - k) * r, r)`,
 where `k` is the allowed length of the special tiles (2, 3 and 4) and m is the overall length.
 
+### Problem 117
+
+[This problem](https://projecteuler.net/problem=116) is similar to 116, but now the calculation of the permutations is
+
+```
+(r + g + b + s)!/(r!g!b!s!) = (m - r - 2*g - 3*b)!/(r!g!b!*(m - 2*r - 3*g - 4*b)!)
+```
+
+Now we just need to loop through all possible combinations of r, g and b.
+
 ### Problem 185
 
 Coming soon
