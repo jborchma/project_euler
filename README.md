@@ -76,7 +76,8 @@ them and just counting how many ways there are to place the red tiles:
 obobobobo
 ```
 Here `b` are black tiles and `o` are the possible spots to place the red tiles. This automatically
-takes care of the rule that the red tiles cannot touch.
+takes care of the rule that the red tiles cannot touch. The formula for the permutations is
+`binom(b + 1, r)`, where `binom(n, k)` is the binomial coefficient.
 
 Once I had that, I had to figure out, for a given length m, how many different combinations of
 r (the number of red block) with different possible lengths there are. The fact that the red
@@ -92,6 +93,23 @@ function.
 Now all I need to do is loop through the numbers of red tiles r starting at 1 and sum up all the
 possible combinations.
 
+### Problem 115
+
+[The next problem](https://projecteuler.net/problem=115) is very similar to 114 and can be solved
+using my solution for 114 very easily. It pretty much asks, given a minimum length `m` for the red tiles,
+how long does the row need to be in order to have at least 1000000 solutions. So we can just change the
+minimum length of 3 from 114 to `m` and increase the length `n` one by one to see how many combinations
+we get.
+
+### Problem 116
+
+[This problem](https://projecteuler.net/problem=116) is much easier than the previous 2. The constraint
+that the red (now also green and blue) tiles cannot touch each other is gone and also we cannot combine
+special tiles of different lengths anymore. Hence, all we need to calculate is the number of
+permutations for a given number of special tiles `r` and length `m` and then loop through the
+possible number of special tiles for the red, green and blue lengths. The number of permutations
+is given by `(r+b)!/(r! * b!) = binom(m + (1 - k) * r, r)`,
+where `k` is the allowed length of the special tiles (2, 3 and 4) and m is the overall length.
 
 ### Problem 185
 
