@@ -121,6 +121,47 @@ where `k` is the allowed length of the special tiles (2, 3 and 4) and m is the o
 
 Now we just need to loop through all possible combinations of r, g and b.
 
+### Problem 124
+
+[This problem](https://projecteuler.net/problem=124) was decently easy as it built upon prime
+factorization where I could reuse my function from problem 69, for example.
+
+Effectively it worked in the following way:
+
+1. factorize each number
+2. calculate the radical and save in a dictionary
+3. sort dictionary by value
+4. read of the 9999th item
+
+### Problem 125
+
+I thought [this problem](https://projecteuler.net/problem=125) was very interesting. The task was
+to find all numbers below 10^8 that are palindromic and are the sums of at least two consecutive
+square numbers.
+
+The algorithm I used to search through all palindromes was the following:
+
+1. We initialize the upper and lower bound to 1
+2. We calculate the maximum number possible (the square root of our N_MAX
+3. initialize sum as 1
+4. ----- WHILE LOOP ------ (as long as the sum is not equal the input number)
+  1. if the sum is smaller than the number:
+     add the square of the upper bound to the sum and increase the upper bound by 1
+  2. elif the sum is larger than the number:
+     subtract the square of the lower bound and increase lower bound by 1
+
+  3. if now the upper bound is larger than the maximum number:
+       the number is not a sum of consecutive square numbers
+   ----- END OF WHILE LOOP -----
+
+5. if the upper bound is larger than the lower bound:
+the number is the sum of at least two consecutive square numbers
+(if upper_bound = lower_bound it would be only one square number)
+
+The trick to finding all palindromic numbers was to construct them as opposed to searching for them.
+This could be done by using the numbers as string (so that it would keep leading 0s) and then once
+we had all possible numbers up to the maximum, we would filter out the leading 0 numbers and dedupe.
+
 ### Problem 185
 
 Coming soon

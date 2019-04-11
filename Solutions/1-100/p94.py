@@ -13,14 +13,25 @@ I had trouble with precision for very large numbers. As it turned out, I only ha
 the parts (3*n+1)*(n - 1) and (3*n-1)*(n + 1) if they are a square of an integer, since the other
 factors were perfect squares by default.
 """
-import numpy as np
-from numba import jit
 import math
+from numba import jit
 
 @jit
-def is_square(x):
-    s = int(math.sqrt(x) + 0.5)
-    return s * s == x
+def is_square(number):
+    """Tests if a number is square
+
+    Parameters
+    ----------
+    number: int
+        Number to test
+
+    Returns
+    -------
+    bool
+        Boolean indicator which is True when number is a square number
+    """
+    square_root = int(math.sqrt(number) + 0.5)
+    return square_root * square_root == number
 
 @jit
 def main():
