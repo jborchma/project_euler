@@ -162,6 +162,39 @@ The trick to finding all palindromic numbers was to construct them as opposed to
 This could be done by using the numbers as string (so that it would keep leading 0s) and then once
 we had all possible numbers up to the maximum, we would filter out the leading 0 numbers and dedupe.
 
+### Problem 127
+
+When I started [this problem](https://projecteuler.net/problem=125), I thought I would be able to
+just use my solution from 125 and do some optimized brute force search. However, as it turns out,
+the search space for this problem was way too large to go about this in this way. Instead, I used
+a really cool trick: use the sieve of Eratosthenes that is normally used for finding primes up to
+a limit to also find all radicals up to a limit. This works, since we need to find all prime
+factors or a given number n to find its radical, so instead of ruling out numbers that are multiples
+of a prime, we note the number itself and in the end get the radical:
+
+```python
+def radical_sieve(limit):
+    """Function that creates a list of radicals based on the sieve of Eratosthenes
+
+    Parameters
+    ----------
+    limit: int
+        Limit for the sieve. Up to this number, all radicals will be calculated
+
+    Returns
+    -------
+    list:
+        List holding the radicals for number n at index n
+    """
+    radical_list = [1] * (limit + 1)
+    radical_list[0] = 0
+    for i in range(2, len(result)):
+        if radical_list[i] == 1:
+            for j in range(i, len(result), i):
+                radical_list[j] *= i
+    return radical_list
+```
+
 ### Problem 185
 
 Coming soon
