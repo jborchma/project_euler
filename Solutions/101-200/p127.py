@@ -1,6 +1,6 @@
 """Solution to problem 127
 
-I first tried a brute force approach based on the answer from problem 125, but the
+I first tried a brute force approach based on the answer from problem 124, but the
 search space is too large. Hence, I need to make some smart improvements that will
 narrow down my search.
 

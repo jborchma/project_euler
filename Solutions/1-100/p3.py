@@ -1,10 +1,19 @@
-# again, brute force
+"""Solution to problem 3
 
-n = 600851475143
-i = 2
-while i*i < n:
-    while n % i == 0:
-        n = n / i
-    i = i + 1
+again, brute force
+"""
 
-print(n)
+def main():
+    """main function
+    """
+    limit = 600851475143
+    i = 2
+    while i*i < limit:
+        while limit % i == 0:
+            limit = limit / i
+        i = i + 1
+
+    print(limit)
+
+if __name__ == "__main__":
+    main()
