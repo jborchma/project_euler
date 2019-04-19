@@ -3,7 +3,6 @@
 The first thing we need to do is identify all anagram pairs in the word list.
 """
 import math
-import random
 from collections import Counter
 import itertools
 from numba import jit
