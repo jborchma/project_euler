@@ -195,6 +195,18 @@ def radical_sieve(limit):
     return radical_list
 ```
 
+### Problem 134
+
+This is actually a pretty simple problem, conceptually. But as always, using the straightforward
+way will take way too long (at least with Python). So I actually had to think about this and do some
+math. Along the way I learned about modular inverse and how to calculate it.
+
+We are looking for a number n = i * 10**(digits_1) + prime_1 and n mod prime_2 = 0. We can solve
+this equation like any normal equation, but we have to keep in mind that when dividing by a number
+in a modular equation we have to use the modular inverse, not just the normal inverse. Doing the
+math, we get i = -prime_1 * (10**(digits))^(-1) % prime_2, where (10**(digits))^(-1) is the modular
+inverse. This combined with the fast prime sieve I've been using solves the problem pretty quickly.
+
 ### Problem 185
 
 Coming soon
