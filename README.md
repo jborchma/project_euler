@@ -207,6 +207,13 @@ in a modular equation we have to use the modular inverse, not just the normal in
 math, we get i = -prime_1 * (10**(digits))^(-1) % prime_2, where (10**(digits))^(-1) is the modular
 inverse. This combined with the fast prime sieve I've been using solves the problem pretty quickly.
 
+### Problems 135 & 136
+
+They were pretty straightforward actually. Plugging in y=x-d and z=x-2*d and then reducing the
+equation, led to a condition which restricted d pretty significantly. I spent some time trying
+to vectorize the calculation but ended up not really finding a way. As it turns out, the search
+space was small enough to then just loop through the possibilities even for 136.
+
 ### Problem 185
 
 Coming soon

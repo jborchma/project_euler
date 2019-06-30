@@ -17,7 +17,7 @@ def check_palindrome(number):
     bool
         Boolean indicator that is True when the number is a palindrome
     """
-    return str(number) == ''.join(reversed(str(number)))
+    return number == int(str(number)[::-1]) #old way: str(number) == ''.join(reversed(str(number)))
 
 def main():
     """main function
