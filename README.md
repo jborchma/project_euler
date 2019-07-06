@@ -214,6 +214,24 @@ equation, led to a condition which restricted d pretty significantly. I spent so
 to vectorize the calculation but ended up not really finding a way. As it turns out, the search
 space was small enough to then just loop through the possibilities even for 136.
 
+### Problem 165
+
+In [this problem](https://projecteuler.net/problem=165), we need to look for intersections in line
+segments that are generated based on pseudo random numbers. My approach was the following:
+
+1. generate the needed line segments
+2. loop through every possible pair of line segments, and check if they intersect
+
+The second step was really where the difficulty of the problem was. I approached it in the
+following way. Each line segment could be represented by an vector equation f(x) = a + x*b,
+where a would be the first point of the segment, say p1, and b would be p2-p1. Hence, x would be
+in [0,1].
+
+The intersection equation is a simple linear equation that would always have a solution unless the
+two line segments are parallel. However, the intersection point count be outside of the actual line
+segment. Hence, I solved the eqation and checked the solution for each pair by checking if
+x was in (0,1) (the exclusion made sure the intersection wasn't an endpoint of a segment). 
+
 ### Problem 185
 
 Coming soon
