@@ -7,7 +7,6 @@ the general case is found here:
 https://plus.maths.org/content/arithmetic-made-easy-reversible-numbers
 
 Just brute forced this. Took a little too long, though...
-
 """
 
 
