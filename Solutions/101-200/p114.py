@@ -19,7 +19,9 @@ sequences there are per given r and total number of red squares and sum them all
 """
 from numpy.polynomial import polynomial as P
 from scipy.special import binom
+
 M = 50
+
 
 def calculate_polynomial_coefficient(n, k, n_min, n_max):
     """calculates the polynomial coefficient
@@ -45,7 +47,9 @@ def calculate_polynomial_coefficient(n, k, n_min, n_max):
     int
         number of compositions into k parts given the set A as a restriction
     """
-    initial_polynomial = [1  if (n_min <= i <= n_max) else 0 for i in range(0, n_max + 1)]
+    initial_polynomial = [
+        1 if (n_min <= i <= n_max) else 0 for i in range(0, n_max + 1)
+    ]
     res = P.polypow(initial_polynomial, k)
 
     return res[n]
@@ -54,14 +58,15 @@ def calculate_polynomial_coefficient(n, k, n_min, n_max):
 def main():
     """main function
     """
-    summe = 2 # start with no reds and all red
-    for r in range(1, M-2):
+    summe = 2  # start with no reds and all red
+    for r in range(1, M - 2):
         for k_times_r in range(3 * r, M):
-            summe += (binom(M - k_times_r + 1, r)
-                      * calculate_polynomial_coefficient(k_times_r, r, 3, M-1)
-                     )
+            summe += binom(M - k_times_r + 1, r) * calculate_polynomial_coefficient(
+                k_times_r, r, 3, M - 1
+            )
 
     print(summe)
+
 
 if __name__ == "__main__":
     main()

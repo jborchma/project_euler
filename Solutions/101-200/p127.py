@@ -13,6 +13,7 @@ of this, we will search through the space of c in the outer loop and then a in t
 import math
 from numba import jit
 
+
 @jit
 def radical_sieve(limit):
     """Function that creates a list of radicals based on the sieve of Eratosthenes
@@ -35,23 +36,24 @@ def radical_sieve(limit):
                 radical_list[j] *= i
     return radical_list
 
+
 def main():
     """main function
     """
     n_max = 120000
-    summe = -1 #takes care of the 0 entry in our sieve
-    counter = -1 #takes care of the 0 entry in our sieve
+    summe = -1  # takes care of the 0 entry in our sieve
+    counter = -1  # takes care of the 0 entry in our sieve
 
     # create radical list
     radical_list = radical_sieve(n_max)
     # sort radicals in ascending order
     sorted_radicals = sorted((radical, n) for (n, radical) in enumerate(radical_list))
 
-    for c in range(1, n_max): #pylint: disable=C0103
-        for radical_a, a in sorted_radicals: #pylint: disable=C0103
+    for c in range(1, n_max):  # pylint: disable=C0103
+        for radical_a, a in sorted_radicals:  # pylint: disable=C0103
             total_radical = radical_list[c] * radical_a
             if total_radical < c:
-                b = c - a #pylint: disable=C0103
+                b = c - a  # pylint: disable=C0103
                 total_radical *= radical_list[b]
                 if a < b and total_radical < c and math.gcd(a, b) == 1:
                     summe += c
@@ -61,6 +63,7 @@ def main():
 
     print("Sum:", summe)
     print("Count:", counter)
+
 
 if __name__ == "__main__":
     main()

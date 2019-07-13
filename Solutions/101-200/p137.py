@@ -15,6 +15,7 @@ multiply them. I also found this one: http://oeis.org/A081018
 import math
 from numba import jit
 
+
 def is_square(number):
     """Check if a number is the square of an integer.
 
@@ -26,16 +27,20 @@ def is_square(number):
     square_root = int(math.sqrt(number) + 0.5)
     return square_root * square_root == number
 
+
 def memoize(f):
     """Memoization decorator
     """
     cache = {}
+
     def wrapper(*args):
-        if not args in cache:
+        if args not in cache:
             cache[args] = f(*args)
 
         return cache[args]
+
     return wrapper
+
 
 @memoize
 def fibonacci(n):
@@ -46,10 +51,10 @@ def fibonacci(n):
     n: int
         calculate the nth Fibonacci element
     """
-    if n <= 2: #pylint: disable=R1705
+    if n <= 2:  # pylint: disable=R1705
         return 1
     else:
-        return fibonacci(n-1) + fibonacci(n-2)
+        return fibonacci(n - 1) + fibonacci(n - 2)
 
 
 @jit
@@ -63,17 +68,17 @@ def search_solutions(limit):
     """
     counter = 0
     for n in range(2, limit):
-        if is_square(5*n**2 + 2*n + 1):
+        if is_square(5 * n ** 2 + 2 * n + 1):
             counter += 1
-            x = - (- math.sqrt(5*n**2 + 2*n + 1) + n + 1) / (2*n)
+            x = -(-math.sqrt(5 * n ** 2 + 2 * n + 1) + n + 1) / (2 * n)
             print("Counter:", counter, n, x)
-
 
 
 def main():
     """main function
     """
     print(f"Answer: {fibonacci(30)*fibonacci(31)}")
+
 
 if __name__ == "__main__":
     main()

@@ -8,11 +8,12 @@ of the sequence.
 Also, the searched sequence is A023106 on https://oeis.org/A023106.
 """
 
+
 def main():
     """main function
     """
-    max_digits = 20 # Finds all terms with <= 20 digits
-    maximum_value = 10**max_digits
+    max_digits = 20  # Finds all terms with <= 20 digits
+    maximum_value = 10 ** max_digits
     found_sequence_members = []
     for sum_of_digits in range(2, 9 * max_digits):
         candidate_number = sum_of_digits
@@ -26,6 +27,7 @@ def main():
 
     found_sequence_members.sort()
     print(found_sequence_members[29])
+
 
 if __name__ == "__main__":
     main()

@@ -10,7 +10,8 @@ The tricky part is to calculate the n'th root of the fraction properly.
 from fractions import Fraction
 import math
 
-def find_zero(n, order): #pylint: disable=C0103
+
+def find_zero(n, order):  # pylint: disable=C0103
     """Finds zeros for Fermat's equation
     """
     if n > 2:
@@ -20,18 +21,19 @@ def find_zero(n, order): #pylint: disable=C0103
     # find all possible candidates
     fraction_set = set(Fraction(a, b) for b in range(order + 1) for a in range(1, b))
 
-    for x in fraction_set: #pylint: disable=C0103
-        for y in fraction_set: #pylint: disable=C0103
+    for x in fraction_set:  # pylint: disable=C0103
+        for y in fraction_set:  # pylint: disable=C0103
             if x > y:
                 continue
-            z_n = (x**n + y**n)
-            z = take_fraction_root(z_n, n) #pylint: disable=C0103
+            z_n = x ** n + y ** n
+            z = take_fraction_root(z_n, n)  # pylint: disable=C0103
             if z in fraction_set:
                 list_of_zeros.append((x, y, z))
 
     return list(set(list_of_zeros))
 
-def take_fraction_root(z, power): #pylint: disable=C0103
+
+def take_fraction_root(z, power):  # pylint: disable=C0103
     """Function to take the root to the power'th power
 
     Parameters
@@ -49,12 +51,13 @@ def take_fraction_root(z, power): #pylint: disable=C0103
     if power < 0:
         # if negative exponent, flip over
         return take_fraction_root(1 / z, -power)
-    a, b = z.numerator, z.denominator #pylint: disable=C0103
+    a, b = z.numerator, z.denominator  # pylint: disable=C0103
     power_a = int(math.pow(a + 0.1, 1 / power))
     power_b = int(math.pow(b + 0.1, 1 / power))
-    if power_a > 0 and power_b > 0 and Fraction(power_a, power_b)**power == z:
+    if power_a > 0 and power_b > 0 and Fraction(power_a, power_b) ** power == z:
         return Fraction(power_a, power_b)
     return 0
+
 
 def main():
     """main function
@@ -68,6 +71,7 @@ def main():
     summe = sum(full_s_list)
 
     print("Answer:", summe.numerator + summe.denominator)
+
 
 if __name__ == "__main__":
     main()

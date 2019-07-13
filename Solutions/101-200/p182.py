@@ -16,7 +16,7 @@ from numba import jit
 
 # find prime factors
 @jit
-def prime_factors(n): #pylint: disable=C0103
+def prime_factors(n):  # pylint: disable=C0103
     """This function finds the prime factors of n
 
     Parameters
@@ -41,7 +41,8 @@ def prime_factors(n): #pylint: disable=C0103
         factors.append(n)
     return factors
 
-def coprime_sieve(n): #pylint: disable=C0103
+
+def coprime_sieve(n):  # pylint: disable=C0103
     """A sieve to calculate all coprime integers for n
 
     Parameters
@@ -55,7 +56,7 @@ def coprime_sieve(n): #pylint: disable=C0103
         List holding all coprimes
     """
     n_prime_factors = prime_factors(n)
-    sieve = [False] + (n-1) * [True]
+    sieve = [False] + (n - 1) * [True]
     for prime_factor in n_prime_factors:
         for i in range(prime_factor, n, prime_factor):
             sieve[i] = False
@@ -64,15 +65,16 @@ def coprime_sieve(n): #pylint: disable=C0103
 
     return coprimes
 
+
 def main():
     """main function
     """
     p = 1009
     q = 3643
     # n = p * q
-    phi = (p-1) * (q-1)
+    phi = (p - 1) * (q - 1)
 
     phi_coprimes = coprime_sieve(phi)
 
-    res = sum([coprime for coprime in phi_coprimes if math.gcd(coprime-1, phi) == 2])
+    res = sum([coprime for coprime in phi_coprimes if math.gcd(coprime - 1, phi) == 2])
     print("Answer:", res)

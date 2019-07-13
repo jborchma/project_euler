@@ -4,14 +4,16 @@ import operator
 from functools import reduce
 from numba import jit
 
+
 def prod(iterable):
     """Product function (Python 3.7) (3.8 will have math.prod)
     """
     return reduce(operator.mul, iterable, 1)
 
+
 # find prime factors
 @jit
-def prime_factors(n):#pylint: disable=C0103
+def prime_factors(n):  # pylint: disable=C0103
     """This function finds the prime factors of n
 
     Parameters
@@ -36,10 +38,12 @@ def prime_factors(n):#pylint: disable=C0103
         factors.append(n)
     return factors
 
-def calculate_radical(n):#pylint: disable=C0103
+
+def calculate_radical(n):  # pylint: disable=C0103
     """This function calculates the radical of n
     """
     return prod(set(prime_factors(n)))
+
 
 def main():
     """main function

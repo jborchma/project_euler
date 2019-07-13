@@ -12,6 +12,7 @@ subset, if there is a subset with more element but a smaller sum. In that case, 
 import itertools
 from collections import defaultdict
 
+
 def load_sets():
     """Function to load sets
     """
@@ -28,11 +29,12 @@ def load_sets():
 
     return sets
 
+
 def check_partial_sums(menge):
     """Check if two partial sums match
     """
     summen = defaultdict(list)
-    for length in range(len(menge), 0, -1):
+    for length in range(len(menge), 0, -1): #pylint: disable=R1702
         for comb in itertools.combinations(menge, length):
             summe = sum(comb)
             # first condition
@@ -43,7 +45,7 @@ def check_partial_sums(menge):
                     else:
                         return False
             # second condition
-            for i in range(summe//2, summe + 1):
+            for i in range(summe // 2, summe + 1):
                 if summen[i]:
                     for item in summen[i]:
                         if len(item) > length and not any(i in item for i in comb):
@@ -52,12 +54,14 @@ def check_partial_sums(menge):
 
     return True
 
+
 def main():
     """main function
     """
     sets = load_sets()
     res = [sum(menge) for menge in sets if check_partial_sums(menge)]
     print(sum(res))
+
 
 if __name__ == "__main__":
     main()

@@ -4,6 +4,7 @@ simple way: use modulo to get last digit, loop through number to check if bouncy
 """
 from numba import jit
 
+
 @jit
 def check_bouncy(number):
     """checks if number is bouncy
@@ -28,10 +29,11 @@ def check_bouncy(number):
         if decreasing and increasing:
             return True
 
-        #update number
+        # update number
         number = number // 10
 
     return decreasing and increasing
+
 
 @jit
 def main():
@@ -45,6 +47,7 @@ def main():
         if 100 * number_of_bounces == 99 * number:
             print("Found number: ", number)
             break
+
 
 if __name__ == "__main__":
     main()

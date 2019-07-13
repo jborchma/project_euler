@@ -5,18 +5,22 @@ for all the permutations of this. Then we can calculate the formula for the diag
 and check if the offset is > or < 0.
 """
 
+
 def load_file():
     """Loading the file
     """
     with open("p102_triangles.txt", "r") as file:
         text = file.read()
-        triangles = [line.split(",") for line in text.split('\n')]
+        triangles = [line.split(",") for line in text.split("\n")]
         for i, triangle in enumerate(triangles):
-            triangles[i] = [(int(triangle[0]), int(triangle[1])),
-                            (int(triangle[2]), int(triangle[3])),
-                            (int(triangle[4]), int(triangle[5]))]
+            triangles[i] = [
+                (int(triangle[0]), int(triangle[1])),
+                (int(triangle[2]), int(triangle[3])),
+                (int(triangle[4]), int(triangle[5])),
+            ]
 
     return triangles
+
 
 def quadrant(point):
     """Determine the quadrant of a point
@@ -34,6 +38,7 @@ def quadrant(point):
     elif point[1] == 0:
         return 6
 
+
 def calculate_y_offset(right_point, left_point):
     """Calculate the y offset
     """
@@ -43,6 +48,7 @@ def calculate_y_offset(right_point, left_point):
     y_offset = right_point[1] - slope * right_point[0]
 
     return y_offset
+
 
 def contains_origin(triangle):
     """Tests if the triangle contains the origin
@@ -140,7 +146,7 @@ def contains_origin(triangle):
     elif quadrant_set == set([2, 4]):
         quadrant_two_count = 0
         quadrant_two_index = []
-        quadrant_four_index= []
+        quadrant_four_index = []
         for i, point in enumerate(triangle):
             if quadrant(point) == 2:
                 quadrant_two_index.append(i)
@@ -171,11 +177,13 @@ def contains_origin(triangle):
     else:
         return True
 
+
 def main():
     """main function
     """
     list_of_triangles = load_file()
     print(sum([contains_origin(triangle) for triangle in list_of_triangles]))
+
 
 if __name__ == "__main__":
     main()

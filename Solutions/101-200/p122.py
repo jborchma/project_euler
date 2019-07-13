@@ -32,7 +32,7 @@ import math
 N_MAX = 200
 
 
-def get_binary_exponentiation_bound(n): #pylint: disable=C0103
+def get_binary_exponentiation_bound(n):  # pylint: disable=C0103
     """get the bound of binary exponentiation
 
     This is the number of calculations that need to be calculated for binary exponentiation.
@@ -40,12 +40,13 @@ def get_binary_exponentiation_bound(n): #pylint: disable=C0103
     ones in the binary representation of n minus 1.
     """
     binary_representation = bin(n)[2:]
-    n_mult = sum([1 for digit in binary_representation if digit == '1']) - 1
+    n_mult = sum([1 for digit in binary_representation if digit == "1"]) - 1
     n_square = int(math.log(n, 2))
 
     return n_mult + n_square
 
-class ChainTree: #pylint: disable=R0903
+
+class ChainTree:  # pylint: disable=R0903
     """class for search tree
 
     I needed to create a class in order to hold the list of already found minimum solutions
@@ -56,9 +57,10 @@ class ChainTree: #pylint: disable=R0903
     minimum_results: [int]
         List of known minimum solutions
     """
+
     def __init__(self, minimum_results: List[int]):
         self.minimum_results = minimum_results
-        #self.number_of_unkown = number_of_unkown
+        # self.number_of_unkown = number_of_unkown
 
     def traverse_tree_of_chains(self, chain, max_steps):
         """recursively traverse tree
@@ -75,26 +77,27 @@ class ChainTree: #pylint: disable=R0903
         """
         # if we hit maximum length or have found all the minimum values we are looking for, end
         if len(chain) > max_steps or (
-                sum([1 for number in self.minimum_results if number is None]) == 0):
+            sum([1 for number in self.minimum_results if number is None]) == 0
+        ):
             return
 
         # traverse from left to right through the tree. The outer left branch is the branch where
         # we double the highest number up to max_steps. Then we start backtracking one node and add
         # the next highest value to the highest and then follow that branch up to max_steps
-        current_maximum = chain[-1] # use to have early stopping
+        current_maximum = chain[-1]  # use to have early stopping
         for i in reversed(range(len(chain))):
-            for j in reversed(range(i+1)):
+            for j in reversed(range(i + 1)):
                 new_value = chain[i] + chain[j]
                 if new_value <= current_maximum:
-                    break #can break since we are only looking at ascending, ordered chains
-                if new_value <= N_MAX: # if new_value is in our search range
+                    break  # can break since we are only looking at ascending, ordered chains
+                if new_value <= N_MAX:  # if new_value is in our search range
                     chain.append(new_value)
-                    #print(self.minimum_results[new_value])
+                    # print(self.minimum_results[new_value])
                     if self.minimum_results[new_value] is None:
                         # since we are going from small number of operations to high, set value only
                         # if we haven't gotten a value yet
                         self.minimum_results[new_value] = len(chain) - 1
-                        #self.number_of_unkown -= 1
+                        # self.number_of_unkown -= 1
                     self.traverse_tree_of_chains(chain, max_steps)
                     # when we have reached the max number of steps and have exhausted a branch,
                     # go back one step and try a new subbranch
@@ -104,7 +107,9 @@ class ChainTree: #pylint: disable=R0903
 def main():
     """main function
     """
-    minimum_operations = [0, 0] + [None] * (N_MAX - 1) #placeholder for 0 and result for 1 is 0
+    minimum_operations = [0, 0] + [None] * (
+        N_MAX - 1
+    )  # placeholder for 0 and result for 1 is 0
 
     tree = ChainTree(minimum_operations)
 
@@ -113,7 +118,7 @@ def main():
         if number_of_unkown == 0:
             print("Answer:", sum(tree.minimum_results))
             break
-        starting_chain = [1] # start just with the one
+        starting_chain = [1]  # start just with the one
         print("Starting iteration, max_ops:", num_ops)
         tree.traverse_tree_of_chains(starting_chain, num_ops)
 

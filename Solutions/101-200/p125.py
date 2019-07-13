@@ -3,7 +3,8 @@
 import math
 from numba import jit
 
-N_MAX = 10**8
+N_MAX = 10 ** 8
+
 
 def create_palindromic_list(n_max):
     """Creates list with all palindromic numbers <= n_max
@@ -26,13 +27,19 @@ def create_palindromic_list(n_max):
     number_of_digits = len(str(n_max))
     for _ in range(3, number_of_digits + 1):
         for i in range(0, 10):
-            palindromic_list += [str(i) + str(number) + str(i) for number in palindromic_list
-                                 if int(str(i) + str(number) + str(i)) <= n_max]
+            palindromic_list += [
+                str(i) + str(number) + str(i)
+                for number in palindromic_list
+                if int(str(i) + str(number) + str(i)) <= n_max
+            ]
 
     # filter out all numbers with leading 0's and dedupe
-    palindromic_list = list(set(int(number) for number in palindromic_list if not number[0] == '0'))
+    palindromic_list = list(
+        set(int(number) for number in palindromic_list if not number[0] == "0")
+    )
 
     return palindromic_list
+
 
 @jit
 def test_square_sum(number):
@@ -90,7 +97,9 @@ def test_square_sum(number):
 def main():
     """main function
     """
-    palindromic_numbers = create_palindromic_list(N_MAX)# generate palindromes and sort
+    palindromic_numbers = create_palindromic_list(
+        N_MAX
+    )  # generate palindromes and sort
 
     summe = 0
     pal_list = []

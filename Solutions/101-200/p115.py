@@ -4,7 +4,9 @@ This problem should be quickly solved by my solution from problem 114.
 """
 from numpy.polynomial import polynomial as P
 from scipy.special import binom
+
 m = 50
+
 
 def calculate_polynomial_coefficient(n, k, n_min, n_max):
     """calculates the polynomial coefficient
@@ -30,24 +32,28 @@ def calculate_polynomial_coefficient(n, k, n_min, n_max):
     int
         number of compositions into k parts given the set A as a restriction
     """
-    initial_polynomial = [1  if (n_min <= i <= n_max) else 0 for i in range(0, n_max + 1)]
+    initial_polynomial = [
+        1 if (n_min <= i <= n_max) else 0 for i in range(0, n_max + 1)
+    ]
     res = P.polypow(initial_polynomial, k)
 
     return res[n]
+
 
 def main():
     """main function
     """
     for n in range(m, 1000):
-        summe = 2 # start with no reds and all red
-        for r in range(1, n-2):
+        summe = 2  # start with no reds and all red
+        for r in range(1, n - 2):
             for k_times_r in range(m * r, n):
-                summe += (binom(n - k_times_r + 1, r)
-                          * calculate_polynomial_coefficient(k_times_r, r, m, n-1)
-                         )
+                summe += binom(n - k_times_r + 1, r) * calculate_polynomial_coefficient(
+                    k_times_r, r, m, n - 1
+                )
         if summe > 1000000:
             print("n:", n, "Summe:", summe)
             break
+
 
 if __name__ == "__main__":
     main()

@@ -16,6 +16,7 @@ from numba import jit
 # golden ratio phi
 PHI = (1 + math.sqrt(5)) / 2
 
+
 def check_pandigital(number_string):
     """checks if a string of numbers is pandigital
 
@@ -29,10 +30,11 @@ def check_pandigital(number_string):
     bool
         Boolean indicator is number is pandigital
     """
-    return set(number_string) == set('123456789')
+    return set(number_string) == set("123456789")
+
 
 @jit
-def scaling_pow(x, n, scaling_factor=10**(-10)):
+def scaling_pow(x, n, scaling_factor=10 ** (-10)):
     """scaled down power function
 
     This function calculates x^n, but scales down the result by the scaling_factor
@@ -55,10 +57,11 @@ def scaling_pow(x, n, scaling_factor=10**(-10)):
     result = 1
     for _ in range(n):
         result *= x
-        if result > 1E20:
+        if result > 1e20:
             result *= scaling_factor
 
     return result
+
 
 @jit
 def check_first_fibonacci_digits(number):
@@ -72,13 +75,14 @@ def check_first_fibonacci_digits(number):
     else:
         return False
 
+
 @jit
 def main():
     """main function
     """
     first_number, second_number, index = 1, 1, 1
     while True:
-        if index % 10**6 == 0:
+        if index % 10 ** 6 == 0:
             print(index)
         if check_pandigital(str(first_number)[-9:]):
             # if the last digits are pandigital, check first ones
