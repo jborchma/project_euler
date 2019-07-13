@@ -1,6 +1,22 @@
-# project_euler
+# Project Euler
 
 Here I upload some of my solutions to Project Euler problems using Python. Most of them are from myself, some of them are done using hints.
+
+## Solving Project Euler problems with Python
+
+Solving Project Euler problems with Python has its unique challenges but it's definitely a good
+choice. A lot of the problems require to traverse quite a large search space and the inefficient
+loops in Python make it necessary to be smart about it. Possible solutions are:
+
+- using list and dictionary comprehensions: This speeds things up nicely as the looping is now
+  done by the underlying C routines.
+- Using numpy arrays: For some solutions is worked well to use numpy arrays and rely on efficient
+  array methods from numpy
+- If no other options remain, it sometimes helped to use numba and its `jit`-decorator to speed
+  up loops that couldn't be avoided with list comprehensions
+
+However, the most important thing do to is generally to think about the problem and try to minimize
+the search space before even starting to write code.
 
 ## Incomplete list of my favourite problems
 
@@ -61,6 +77,34 @@ as guessing based on the updated grid. It works as follows:
    correct solution, or we move on to another guess.
 
 This solution was able to get all 50 solutions pretty quickly.
+
+### Problem 108
+
+[The problem](https://projecteuler.net/problem=108) is a very interesting one. One is asked to count
+the number of solutions for the "diophantine" equation `1/x + 1/y = 1/n`. This can be brought into the
+actual diophantine form `yn + xn = xy`. Writing `x = ny / (y-n)` and defining `k = y-n` we can see that
+`x = n + n**2 / k` and hence k needs to be a divisor of n**2. Also, if we say `y <= x -> k + n <= n + n**2 / k -> k <= n`. Hence, we need to find all divisors of n^2 that are smaller or equal to n.
+
+This yields `(tau(n^2) + 1) / 2`, where tau is the divisor function. The +1 is necessary since the
+number of divisors of a square number are always odd. Now, the huge speed up comes from the fact that `tau(n^2) = prod_i (1 * 2*k_i)`, where the k_i are the exponents of the prime factorization of n,
+not n^2! This can be seen by writing `n = prod_i p_i ^ (k_i)` and squaring.
+
+### Problem 110
+
+In principle, [this problem](https://projecteuler.net/problem=110) is exactly the same as problem
+108, but since we are looking for a much larger number, we will not be able to use my solution for
+108 directly.
+
+Actually, when thinking about this problem, we don't really care about the actual underlying number
+for calculating the number of possible solutions, only the exponents of the prime factorization of
+the number. So instead of looping through each number, factorizing it and then calculating the
+solution, it makes much more sense to construct prime factorizations and then check if they satisfy
+the constraint, which is 4 million solutions.
+
+One can find that one will definitely not need more than the first 15 primes as the prime factors,
+and starting from there, one can search recursively through the space of prime factorizations,
+check if there are enough solutions and then check if the integer that belongs to the specific
+factorization is the smallest one found yet. 
 
 ### Problem 114
 
@@ -230,7 +274,7 @@ in [0,1].
 The intersection equation is a simple linear equation that would always have a solution unless the
 two line segments are parallel. However, the intersection point count be outside of the actual line
 segment. Hence, I solved the eqation and checked the solution for each pair by checking if
-x was in (0,1) (the exclusion made sure the intersection wasn't an endpoint of a segment). 
+x was in (0,1) (the exclusion made sure the intersection wasn't an endpoint of a segment).
 
 ### Problem 185
 

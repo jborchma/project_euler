@@ -6,7 +6,7 @@ program would run forever by simply searching through the increasing integers.
 
 I think the approach will be to construct integers by looking at the number of distinct
 prime factors. In the end it doesn't matter which numbers are the actual prime factors, what
-matters is that the exponents are.
+matters is what the exponents are.
 """
 import math
 from operator import itemgetter, mul
