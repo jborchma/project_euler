@@ -10,7 +10,19 @@ Not the fasted solution...
 """
 import math
 
-def divisor_generator(n):
+def divisor_generator(n): #pylint: disable=C0103
+    """Generate divisors of n
+
+    Parameters
+    ----------
+    n: int
+        Integer for which the divisors will be generated
+
+    Yields
+    ------
+    int
+        Divisor of n
+    """
     large_divisors = []
     for i in range(1, int(math.sqrt(n) + 1)):
         if n % i == 0:
@@ -24,7 +36,7 @@ def main():
     """main function
     """
     summe = 0
-    for n in range(1, 10):
+    for n in range(1, 10): #pylint: disable=C0103
         n_divisors = list(divisor_generator(10**(2*n)))
         n_divisors = [divisor for divisor in n_divisors if divisor <= 10**n]
         counter = 0
