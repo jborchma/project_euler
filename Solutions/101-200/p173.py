@@ -15,16 +15,14 @@ a layer with length 1 or 2, we need to subtract 2.
 """
 N = 1000000
 
+
 def main():
     """main function
     """
-    # i am going in steps of two
-    counter = 0
-    for i in range(1, N//10):
-        #counter += max(0, (N+4*(i) - 2*i*(i-1))//(4*i) - 2)
-        counter += max(0, N//(4*i) -i)
+    counter = sum([max(0, N // (4 * i) - i) for i in range(1, N // 50)])
 
     print(f"Answer: {counter}.")
+
 
 if __name__ == "__main__":
     main()
