@@ -5,6 +5,8 @@ tau(n) = prod (1+a_i), where a_i are the prime factor exponents of the prime fac
 
 So we could calculate the number of divisors for all numbers and then check if n and n+1 have the
 same number.
+
+This is mainly reusing my functions from problem 108.
 """
 from operator import mul
 from functools import reduce
