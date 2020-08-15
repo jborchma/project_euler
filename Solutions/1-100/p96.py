@@ -9,20 +9,24 @@ from copy import deepcopy
 N = 9
 CELL_SIZE = 3
 
+
 def load_grids():
     """Function to load grids into memory
     """
     list_of_grids = []
     index_counter = -1
-    with open('p096_sudoku.txt', 'r') as file:
+    with open("p096_sudoku.txt", "r") as file:
         for i, line in enumerate(file):
             if i % 10 == 0:
                 index_counter += 1
                 list_of_grids.append([])
             else:
-                list_of_grids[index_counter].append([int(digit) for digit in str.strip(line)])
+                list_of_grids[index_counter].append(
+                    [int(digit) for digit in str.strip(line)]
+                )
 
     return list_of_grids
+
 
 def initialize_grid(grid):
     """Initializes grid. Sets in each square either the number or in case of a 0 a set of all
@@ -38,15 +42,16 @@ def initialize_grid(grid):
 
     return initial_state
 
+
 def propagate_knowledge(current_state):
     """Propagate the current knowledge and eliminate impossible numbers
     """
-    #current_state = current_state.copy()
+    # current_state = current_state.copy()
     new_values_found = 0
 
     # go through all cells
-    for x_cell in range(N//CELL_SIZE):
-        for y_cell in range(N//CELL_SIZE):
+    for x_cell in range(N // CELL_SIZE):
+        for y_cell in range(N // CELL_SIZE):
             cell_values = set()
             # fill in cell digits
             for i in range(CELL_SIZE * x_cell, CELL_SIZE * x_cell + CELL_SIZE):
@@ -98,6 +103,7 @@ def propagate_knowledge(current_state):
 
     return current_state, True, new_values_found
 
+
 def propagate(grid):
     """Propagate our knowledge until we can't find any more numbers by just
     applying the rules.
@@ -108,6 +114,7 @@ def propagate(grid):
             return current_state, False
         if new_values_found == 0 or new_values_found is None:
             return current_state, True
+
 
 def guess(current_state):
     """Solve the sudoku puzzle
@@ -142,12 +149,13 @@ def extract_digit(grid):
     initial_state = initialize_grid(grid)
     solved_state = guess(initial_state)
 
-    #print(solved_state)
-    digits = ''
+    # print(solved_state)
+    digits = ""
     for digit in solved_state[0][:3]:
         digits += str(digit)
 
     return int(digits)
+
 
 def done(grid):
     """Check if grid is solved.
@@ -169,6 +177,7 @@ def done(grid):
 
     return True
 
+
 def main():
     """main function
     """
@@ -180,6 +189,7 @@ def main():
         sum_of_digits += digits
 
     print(sum_of_digits)
+
 
 if __name__ == "__main__":
     main()

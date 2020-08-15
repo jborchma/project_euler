@@ -8,8 +8,8 @@ cubic_numbers = {}
 min_cube = 1e38
 
 while searching:
-    cube = n * n * n #cube current number
-    digits = ''.join(sorted(str(cube))) # sort digits of the cube
+    cube = n * n * n  # cube current number
+    digits = "".join(sorted(str(cube)))  # sort digits of the cube
     if digits in cubic_numbers:
         cubic_numbers[digits] += [cube]
         if len(cubic_numbers[digits]) == 5:
@@ -21,4 +21,3 @@ while searching:
     n += 1
 
 print(min_cube)
-

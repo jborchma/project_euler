@@ -7,6 +7,7 @@ below 1000000 and ended the search if the aliquot sum was prime or exceeded 1000
 from itertools import compress
 from operator import itemgetter
 
+
 def prime_sieve(n):
     """List of primes < n for n > 2
 
@@ -31,10 +32,10 @@ def prime_sieve(n):
     list
         List holding all primes < n
     """
-    sieve = bytearray([True]) * (n//2)
-    for i in range(3, int(n**0.5)+1, 2):
-        if sieve[i//2]:
-            sieve[i*i//2::i] = bytearray((n-i*i-1)//(2*i)+1)
+    sieve = bytearray([True]) * (n // 2)
+    for i in range(3, int(n ** 0.5) + 1, 2):
+        if sieve[i // 2]:
+            sieve[i * i // 2 :: i] = bytearray((n - i * i - 1) // (2 * i) + 1)
     return [2, *compress(range(3, n, 2), sieve[1:])]
 
 
@@ -63,8 +64,8 @@ def prime_factorization(n, prime_list):
         if prime * prime > n:
             # in case the prime numbers are larger than sqrt(n), break
             break
-        count = 0 # initialize the count
-        while not n % prime: # in case prime divides n
+        count = 0  # initialize the count
+        while not n % prime:  # in case prime divides n
             n //= prime
             count += 1
         if count > 0:
@@ -79,7 +80,7 @@ def divisors(n, prime_list):
     """
     divs = [1]
     for prime, exponent in prime_factorization(n, prime_list):
-        divs += [x * prime**k for k in range(1, exponent + 1) for x in divs]
+        divs += [x * prime ** k for k in range(1, exponent + 1) for x in divs]
     return divs
 
 
@@ -92,11 +93,12 @@ def divisor_sum(n, prime_list):
 
     return summe - n
 
+
 def main():
     """main function
     """
     n = 1000000
-    primes_list = prime_sieve(int(n**0.5)+1)
+    primes_list = prime_sieve(int(n ** 0.5) + 1)
     prime_lookup_dict = {prime: None for prime in primes_list}
     # print(divisors(n, primes_list))
     # print(divisor_sum(n, primes_list))
@@ -115,13 +117,14 @@ def main():
             else:
                 searching = False
                 if aliquot_sum == sequence_list[0]:
-                    sequence_results.append((sequence_list[0], len(sequence_list),
-                                             min(sequence_list)))
+                    sequence_results.append(
+                        (sequence_list[0], len(sequence_list), min(sequence_list))
+                    )
 
             number = aliquot_sum
 
-
     print("Answer:", max(sequence_results, key=itemgetter(1)))
+
 
 if __name__ == "__main__":
     main()

@@ -16,8 +16,9 @@ number = a + b + c
 import math
 
 LIMIT = 1500000
-M_LIMIT = int(math.sqrt(LIMIT/2))
+M_LIMIT = int(math.sqrt(LIMIT / 2))
 NUMBER_LIST = [0] * (LIMIT + 1)
+
 
 def main():
     """Main function
@@ -26,9 +27,9 @@ def main():
     for m in range(2, M_LIMIT):
         for n in range(1, m):
             if (m + n) % 2 == 1 and math.gcd(m, n) == 1:
-                a = m**2 - n**2
+                a = m ** 2 - n ** 2
                 b = 2 * m * n
-                c = m**2 + n**2
+                c = m ** 2 + n ** 2
                 number = a + b + c
                 while number <= LIMIT:
                     NUMBER_LIST[number] += 1
@@ -39,6 +40,7 @@ def main():
                     number += a + b + c
 
     print(number_of_1_sequence)
+
 
 if __name__ == "__main__":
     main()

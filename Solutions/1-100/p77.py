@@ -3,6 +3,7 @@
 I think this can be a combination of the prime sieve and the coin combination problem 31.
 """
 
+
 def prime_sieve(limit):
     """Sieve of Eratosthenes for prime numbers
     """
@@ -15,6 +16,7 @@ def prime_sieve(limit):
                 result[j] = False
     return result
 
+
 def main():
     """main function
     """
@@ -22,7 +24,7 @@ def main():
     sieve_list = prime_sieve(100)
     prime_list = [i for i, indicator in enumerate(sieve_list) if indicator]
 
-    ways = {i:0 for i in range(target + 1)}
+    ways = {i: 0 for i in range(target + 1)}
     ways[0] = 1
 
     for prime in prime_list:

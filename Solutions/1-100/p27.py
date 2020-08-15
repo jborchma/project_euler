@@ -1,15 +1,19 @@
 """Solution to problem 27
 """
 
+
 def mark(sieve, x):
-    for i in range(x+x, len(sieve), x):
+    for i in range(x + x, len(sieve), x):
         sieve[i] = False
+
 
 def test_prime(sieve, n):
     return sieve[n]
 
+
 def prime_euqation(n, a, b):
-    return n**2 + a*n +b
+    return n ** 2 + a * n + b
+
 
 def main():
     """main function
@@ -17,7 +21,7 @@ def main():
     n = 1000000
     sieve = [True] * n
 
-    for x in range(2, int(len(sieve)**0.5)+1):
+    for x in range(2, int(len(sieve) ** 0.5) + 1):
         if sieve[x]:
             mark(sieve, x)
 
@@ -40,8 +44,9 @@ def main():
                     break
 
     print(max_length)
-    print(a_max, 'a_max')
-    print(b_max, 'b_max')
+    print(a_max, "a_max")
+    print(b_max, "b_max")
+
 
 if __name__ == "__main__":
     main()

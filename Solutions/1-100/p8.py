@@ -5,12 +5,12 @@ number_as_string = str(number)
 
 
 largest_prod = 1
-largest_slice = '0'
-for start in range(len(number_as_string)-13):
-    number_slice = number_as_string[start:start+13]
+largest_slice = "0"
+for start in range(len(number_as_string) - 13):
+    number_slice = number_as_string[start : start + 13]
     prod = 1
     for digit in number_slice:
-        prod = prod*int(digit)
+        prod = prod * int(digit)
     if prod > largest_prod:
         largest_prod = prod
         largest_slice = number_slice

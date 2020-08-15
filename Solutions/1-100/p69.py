@@ -1,6 +1,7 @@
 """Solution to Project Euler problem 69
 """
 
+
 def prime_factors(n):
     """Calculates the prime factors of n and returns them in a list
     """
@@ -19,6 +20,7 @@ def prime_factors(n):
         factors.append(n)
     return factors
 
+
 def phi(n):
     """Computes Euler's totient function via
 
@@ -29,8 +31,9 @@ def phi(n):
     prime_facts = prime_factors(n)
     result = n
     for prime in set(prime_facts):
-        result *= (1-1/prime)
+        result *= 1 - 1 / prime
     return result
+
 
 def main():
     """Main function
@@ -40,12 +43,13 @@ def main():
     for n in range(2, 1000000):
         if n % 100000 == 0:
             print(n)
-        val = n/phi(n)
+        val = n / phi(n)
         if val > maximum:
             maximum = val
             maximum_n = n
 
     print(maximum_n, maximum)
+
 
 if __name__ == "__main__":
     main()

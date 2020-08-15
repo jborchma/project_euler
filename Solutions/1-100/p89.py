@@ -4,6 +4,7 @@ This problem is decently straight forward. We need to check the ones, tens and h
 Then we need to check all the "nines" and reduce.
 """
 
+
 def clean_numeral(numeral):
     """This function cleans a roman numeral and makes it optimal
     """
@@ -29,15 +30,17 @@ def clean_numeral(numeral):
 
     return saved
 
+
 def main():
     """main function
     """
     total_saved = 0
-    with open('p089_roman.txt', 'r') as file:
+    with open("p089_roman.txt", "r") as file:
         for line in file:
             total_saved += clean_numeral(line.strip())
 
     print("Answer:", total_saved)
+
 
 if __name__ == "__main__":
     main()
