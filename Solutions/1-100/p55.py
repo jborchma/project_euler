@@ -1,6 +1,7 @@
 """Solution to problem 55
 """
 
+
 def is_palindrome(number):
     """Checks if number is a palindrome
 
@@ -15,6 +16,7 @@ def is_palindrome(number):
         Boolean indicator that is True when the number is a palindrome
     """
     return str(number) == str(number)[::-1]
+
 
 def main():
     """main function
@@ -35,6 +37,7 @@ def main():
                 summe = summe + int(str(summe)[::-1])
 
     print(counter_all)
+
 
 if __name__ == "__main__":
     main()

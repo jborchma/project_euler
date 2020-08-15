@@ -5,7 +5,7 @@ and then do the remaining calculations. Luckily the builtin pow function can do 
 very easily.
 """
 
-first_10_digits = pow(2, 7830457, 10**10)
+first_10_digits = pow(2, 7830457, 10 ** 10)
 first_10_digits = 28433 * first_10_digits + 1
 
 print(first_10_digits)

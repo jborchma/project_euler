@@ -9,17 +9,20 @@ import itertools
 N = 1000000
 SIEVE = [True] * N
 
+
 def mark(sieve, x):
     """This function marks prime numbers. Works well up to O(10**7)
     """
-    for number in range(x+x, len(sieve), x):
+    for number in range(x + x, len(sieve), x):
         sieve[number] = False
 
-for x in range(2, int(N**0.5) + 1):
+
+for x in range(2, int(N ** 0.5) + 1):
     if SIEVE[x]:
         mark(SIEVE, x)
 
 print("Generated the sieve...")
+
 
 def test_prime(n):
     """Tests if a number is prime
@@ -28,6 +31,7 @@ def test_prime(n):
         return True
     else:
         return False
+
 
 def test_number_chain(number):
     """Function to test if number is in a 8 part chain
@@ -49,7 +53,9 @@ def test_number_chain(number):
                         new_number += str(digit)
                     else:
                         new_number += old_digit
-                if test_prime(int(new_number)) and len(str(int(new_number))) >= len(string_number):
+                if test_prime(int(new_number)) and len(str(int(new_number))) >= len(
+                    string_number
+                ):
                     prime_counter += 1
                     prime_list.append(int(new_number))
                     if prime_counter > max_prime_counter:
@@ -62,6 +68,7 @@ def test_number_chain(number):
 
     return max_prime_counter, max_prime_list
 
+
 def main():
     """main function
     """
@@ -72,6 +79,7 @@ def main():
         if max_prime_counter == 8:
             print("Found:", min(prime_list))
             break
+
 
 if __name__ == "__main__":
     main()

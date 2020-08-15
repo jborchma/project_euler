@@ -3,20 +3,25 @@
 import numpy as np
 from numba import jit
 
+
 def memoize(f):
     cache = {}
+
     def wrapper(*args):
         if not args in cache:
             cache[args] = f(*args)
 
         return cache[args]
+
     return wrapper
+
 
 @jit
 def calculate_digit_square(n):
     """Calculate the sum of the squares of all digits
     """
-    return np.sum([int(digit)**2 for digit in str(n)])
+    return np.sum([int(digit) ** 2 for digit in str(n)])
+
 
 @jit
 @memoize
@@ -48,5 +53,6 @@ def main():
 
     print(ones)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

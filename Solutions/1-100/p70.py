@@ -1,7 +1,8 @@
 """Solution to problem 70
 """
 
-def prime_factors(n): #pylint: disable=C0103
+
+def prime_factors(n):  # pylint: disable=C0103
     """This function finds the prime factors of n
 
     Parameters
@@ -26,29 +27,32 @@ def prime_factors(n): #pylint: disable=C0103
         factors.append(n)
     return factors
 
-def phi(n): #pylint: disable=C0103
+
+def phi(n):  # pylint: disable=C0103
     """Calculate Euler's totient function
     """
     prime_facts = prime_factors(n)
     result = n
     for prime in set(prime_facts):
-        result *= (1 - 1 / prime)
+        result *= 1 - 1 / prime
     return result
+
 
 def main():
     """main function
     """
     min_n = 0
     minimum = 10e38
-    for n in range(2, 10000000): #pylint: disable=C0103
+    for n in range(2, 10000000):  # pylint: disable=C0103
         if n % 1000000 == 0:
             print(n)
         val = int(phi(n))
-        if sorted(str(n)) == sorted(str(val)) and n/val < minimum:
-            minimum = n/val
+        if sorted(str(n)) == sorted(str(val)) and n / val < minimum:
+            minimum = n / val
             min_n = n
 
     print(min_n, minimum)
+
 
 if __name__ == "__main__":
     main()

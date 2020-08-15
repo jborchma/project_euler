@@ -8,6 +8,7 @@ Using the generalized pentagonal numbers, we can solve this with recursion.
 """
 import functools
 
+
 def generate_alternating_range(limit):
     """Utility function to create alternating range up to limit
 
@@ -25,7 +26,8 @@ def generate_alternating_range(limit):
         yield i
         yield -i
 
-def calculate_generalized_pentagonal_numbers(n): #pylint: disable=C0103
+
+def calculate_generalized_pentagonal_numbers(n):  # pylint: disable=C0103
     """Calculates the first n generalized pentagonal numbers
 
     Parameters
@@ -38,10 +40,11 @@ def calculate_generalized_pentagonal_numbers(n): #pylint: disable=C0103
     list:
         List holding the first n generalized pentagonal numbers
     """
-    return [0] + [int((3 * i**2 - i) / 2)  for i in generate_alternating_range(n-1)]
+    return [0] + [int((3 * i ** 2 - i) / 2) for i in generate_alternating_range(n - 1)]
+
 
 @functools.lru_cache(maxsize=None)
-def partitions(n): #pylint: disable=C0103
+def partitions(n):  # pylint: disable=C0103
     """Calculate the number of partitions recursively
 
     The recursion works as follows:
@@ -65,14 +68,15 @@ def partitions(n): #pylint: disable=C0103
     else:
         k = 1
         while (n >= (k * (3 * k - 1) // 2)) or (n >= (k * (3 * k + 1) // 2)):
-            i = (k * (3 * k - 1) // 2)
-            j = (k * (3 * k + 1) // 2)
+            i = k * (3 * k - 1) // 2
+            j = k * (3 * k + 1) // 2
             if (n - i) >= 0:
-                n_partition += ((-1) ** (k-1)) * partitions(n - i)
+                n_partition += ((-1) ** (k - 1)) * partitions(n - i)
             if (n - j) >= 0:
-                n_partition += ((-1) ** (k-1)) * partitions(n - j)
+                n_partition += ((-1) ** (k - 1)) * partitions(n - j)
             k += 1
     return n_partition
+
 
 def main():
     """main function
@@ -81,6 +85,7 @@ def main():
         if partitions(i) % 1000000 == 0:
             print("Answer:", i)
             break
+
 
 if __name__ == "__main__":
     main()

@@ -16,6 +16,7 @@ factors were perfect squares by default.
 import math
 from numba import jit
 
+
 @jit
 def is_square(number):
     """Tests if a number is square
@@ -33,6 +34,7 @@ def is_square(number):
     square_root = int(math.sqrt(number) + 0.5)
     return square_root * square_root == number
 
+
 @jit
 def main():
     """main function
@@ -40,25 +42,23 @@ def main():
 
     circs = 0
     counter = 0
-    for n in range(2, 10**9//3):
-        if n % 10**7 == 0:
+    for n in range(2, 10 ** 9 // 3):
+        if n % 10 ** 7 == 0:
             print(n, counter)
-        A_plus = (3*n+1)*(n - 1)
-        A_minus = (3*n-1)*(n + 1)
+        A_plus = (3 * n + 1) * (n - 1)
+        A_minus = (3 * n - 1) * (n + 1)
 
         if is_square(A_plus):
             counter += 1
             circs += 3 * n + 1
-            print(n, n, n + 1, ':', A_plus)
+            print(n, n, n + 1, ":", A_plus)
         if is_square(A_minus):
             counter += 1
             circs += 3 * n - 1
-            print(n, n, n - 1, ':', A_minus)
+            print(n, n, n - 1, ":", A_minus)
 
     print(circs)
     print(counter)
-
-
 
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@ import numpy as np
 
 FACT_LIST = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]
 
+
 def calculate_factorial_sum(integer):
     """Calculate factorial sum
     """
@@ -14,6 +15,7 @@ def calculate_factorial_sum(integer):
     fact_sum = np.sum([FACT_LIST[int(digit)] for digit in string_n])
 
     return fact_sum
+
 
 # calculate fact sum chain
 
@@ -31,7 +33,7 @@ for i in range(3, 1000000):
         if len(chain_numbers) > 60:
             break
 
-    #print(len(chain_numbers))
+    # print(len(chain_numbers))
     if len(chain_numbers) == 60:
         number_of_60_chains += 1
 
