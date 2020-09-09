@@ -10,6 +10,7 @@ multiplications that way.
 """
 from numba import jit
 
+
 @jit
 def scaling_mult(a, b, scaling_factor=10 ** (-10)):
     """scaled down power function
@@ -30,15 +31,15 @@ def scaling_mult(a, b, scaling_factor=10 ** (-10)):
     float
         Result of a*b scaled down by powers of the scaling_factor
     """
-    result = a*b
+    result = a * b
     if result > 1e20:
         result *= scaling_factor
 
     return result
 
+
 def main():
-    """main function
-    """
+    """main function"""
     i = 2
     counter = 0
     previous_i = 0
