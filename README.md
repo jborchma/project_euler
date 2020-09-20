@@ -1,6 +1,8 @@
 # Project Euler
 
-Here I upload some of my solutions to Project Euler problems using Python. Most of them are from myself, some of them are done using hints.
+Here I upload some of my solutions to Project Euler problems using Python and sometimes Rust.
+Most of them are from myself, some of them are done using hints for certain parts found in the
+internet.
 
 ## Solving Project Euler problems with Python
 
@@ -17,6 +19,12 @@ loops in Python make it necessary to be smart about it. Possible solutions are:
 
 However, the most important thing do to is generally to think about the problem and try to minimize
 the search space before even starting to write code.
+
+## Solving problems in Rust
+
+So far, using Rust seems a little easier for certain things as loops are much faster compared to
+Python. However, a bunch of convenience functions and methods that I was using in Python do not
+exist in Rust and hence certain things might be a little bit more manual.
 
 ## Incomplete list of my favourite problems
 
@@ -104,7 +112,7 @@ the constraint, which is 4 million solutions.
 One can find that one will definitely not need more than the first 15 primes as the prime factors,
 and starting from there, one can search recursively through the space of prime factorizations,
 check if there are enough solutions and then check if the integer that belongs to the specific
-factorization is the smallest one found yet. 
+factorization is the smallest one found yet.
 
 ### Problem 114
 
