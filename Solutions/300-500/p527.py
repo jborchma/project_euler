@@ -1,6 +1,11 @@
+"""Solution to problem 527.
+
+Most of the work was actually done by hand and is in my notebook.
+"""
 import math
 import numpy as np
 from scipy.special import digamma
+
 
 def B(n):
     """Expected number of steps for binary search.
@@ -8,7 +13,7 @@ def B(n):
     Taken from https://en.wikipedia.org/wiki/Binary_search_algorithm#Performance
     """
     logarithm = int(math.log(n, 2))
-    return (logarithm + 1 - (2**(logarithm + 1) - logarithm - 2) / n)
+    return logarithm + 1 - (2 ** (logarithm + 1) - logarithm - 2) / n
 
 
 def R_recursive(n):
@@ -25,8 +30,13 @@ def R_recursive(n):
     if n == 1:
         return 1
 
-    #return 1 + 2/n**2 * (sum([i * R_recursive(i) for i in range(1, n)]))
-    return 1 + (2*(n-1)+(n-1)**2) / n**2 * R_recursive(n-1) - ((n-1)/n)**2
+    # return 1 + 2/n**2 * (sum([i * R_recursive(i) for i in range(1, n)]))
+    return (
+        1
+        + (2 * (n - 1) + (n - 1) ** 2) / n ** 2 * R_recursive(n - 1)
+        - ((n - 1) / n) ** 2
+    )
+
 
 def R(n):
     """Based on the formula above and computed through Wolfram Alpha:
@@ -34,12 +44,19 @@ def R(n):
 
     a(n) = (2 gamma n - 3 n + 2 n polygamma(0, n + 1) + 2 polygamma(0, n + 1) + 2 gamma )/n
     """
-    return (2 * np.euler_gamma * n - 3 * n + 2 * n * digamma(n+1) + 2 * digamma(n+1) + 2* np.euler_gamma) / n
+    return (
+        2 * np.euler_gamma * n
+        - 3 * n
+        + 2 * n * digamma(n + 1)
+        + 2 * digamma(n + 1)
+        + 2 * np.euler_gamma
+    ) / n
 
 
 def main():
     """Main function."""
     print(f"The answer is {R(10**10) - B(10**10)}.")
+
 
 if __name__ == "__main__":
     main()
